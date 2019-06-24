@@ -19,11 +19,15 @@ class ProductPage(BasePage):
         return self.browser.find_element(*ProductPageLocators.BASKET_MESSAGE).text
 
     def should_contains_product_name_in_success_message(self, product_name, success_message):
-        assert product_name in success_message, "Success message should contains product name " \
-                                                "\nproduct_name = {}" \
-                                                "\nsuccess_message = {}".format(product_name, success_message)
+        excepted_message = "{} has been added to your basket.".format(product_name)
+        assert excepted_message == success_message, \
+            "Success message should contains product name " \
+            "\nexcepted_message = {}" \
+            "\nsuccess_message = {}".format(excepted_message, success_message)
 
     def should_contains_product_price_in_basket_total(self, product_price, basket_message):
-        assert product_price in basket_message, "Basket message should contains product price " \
-                                                "\nproduct_price = {}" \
-                                                "\nbasket_message = {}".format(product_price, basket_message)
+        excepted_message = "Your basket total is now {}".format(product_price)
+        assert excepted_message == basket_message, \
+            "Basket message should contains product price " \
+            "\nexcepted_message = {}" \
+            "\nbasket_message = {}".format(excepted_message, basket_message)
