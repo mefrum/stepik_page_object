@@ -4,6 +4,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.locators import BasePageLocators
+
 
 class BasePage(object):
 
@@ -41,6 +43,15 @@ class BasePage(object):
 
     def click(self, how, what):
         self.browser.find_element(how, what).click()
+
+    def type(self, how, what, text):
+        el = self.browser.find_element(how, what)
+        el.clear()
+        el.send_keys(text)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
