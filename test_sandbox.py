@@ -1,6 +1,6 @@
 import pytest
 
-from pages.product_page import ProductPage
+from .pages.product_page import ProductPage
 
 
 @pytest.mark.skip

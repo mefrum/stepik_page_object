@@ -5,9 +5,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from pages.cart_page import CartPage
-from pages.locators import BasePageLocators
-from pages.login_page import LoginPage
+from .locators import BasePageLocators
 
 
 class BasePage(object):
@@ -71,8 +69,10 @@ class BasePage(object):
 
     def go_to_login_page(self):
         self.click(*BasePageLocators.LOGIN_LINK)
+        from .login_page import LoginPage
         return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def go_to_basket_page(self):
         self.click(*BasePageLocators.VIEW_BASKET_LINK)
+        from .cart_page import CartPage
         return CartPage(browser=self.browser, url=self.browser.current_url)

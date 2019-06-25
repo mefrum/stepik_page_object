@@ -5,7 +5,7 @@ from .locators import CartPageLocators
 class CartPage(BasePage):
 
     def should_be_empty(self):
-        self.should_be_empty()
+        self.should_be_message()
         self.should_be_not_product_in_basket()
 
     def should_be_message(self):
