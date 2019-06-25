@@ -24,3 +24,10 @@ class ProductPageLocators(object):
 
 class BasePageLocators(object):
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    VIEW_BASKET_LINK = (By.CSS_SELECTOR, ".basket-mini .btn-group a")
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+
+
+class CartPageLocators(object):
+    EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    BASTES_ITEMS = (By.CSS_SELECTOR, ".basket-items")

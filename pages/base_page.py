@@ -1,15 +1,18 @@
 import math
 from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.cart_page import CartPage
 from pages.locators import BasePageLocators
+from pages.login_page import LoginPage
 
 
 class BasePage(object):
 
-    def __init__(self, browser, url, timeout=10) -> None:
+    def __init__(self, browser: WebDriver, url, timeout=10) -> None:
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -65,3 +68,11 @@ class BasePage(object):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def go_to_login_page(self):
+        self.click(*BasePageLocators.LOGIN_LINK)
+        return LoginPage(browser=self.browser, url=self.browser.current_url)
+
+    def go_to_basket_page(self):
+        self.click(*BasePageLocators.VIEW_BASKET_LINK)
+        return CartPage(browser=self.browser, url=self.browser.current_url)
