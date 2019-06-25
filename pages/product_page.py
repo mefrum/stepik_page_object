@@ -22,6 +22,10 @@ class ProductPage(BasePage):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented"
 
+    def should_be_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is_disappeared"
+
     def should_contains_product_name_in_success_message(self, product_name, success_message):
         excepted_message = "{} has been added to your basket.".format(product_name)
         assert excepted_message == success_message, \
