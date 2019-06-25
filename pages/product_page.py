@@ -18,6 +18,10 @@ class ProductPage(BasePage):
     def basket_message(self):
         return self.browser.find_element(*ProductPageLocators.BASKET_MESSAGE).text
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented"
+
     def should_contains_product_name_in_success_message(self, product_name, success_message):
         excepted_message = "{} has been added to your basket.".format(product_name)
         assert excepted_message == success_message, \
