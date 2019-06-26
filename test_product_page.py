@@ -2,8 +2,8 @@ import time
 
 import pytest
 
-from base_test import setup_product_page, setup_page
-from pages.login_page import LoginPage
+from .base_test import setup_product_page, setup_page
+from .pages.login_page import LoginPage
 
 
 @pytest.mark.need_review
