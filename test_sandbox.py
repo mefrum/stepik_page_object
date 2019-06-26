@@ -1,6 +1,6 @@
 import pytest
 
-from .pages.product_page import ProductPage
+from base_test import setup_product_page
 
 
 @pytest.mark.skip
@@ -15,8 +15,7 @@ from .pages.product_page import ProductPage
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
 def test_guest_can_add_product_to_cart(browser, link):
-    page = ProductPage(browser, link)
-    page.open()
+    page = setup_product_page(browser, link)
     page.click_btn_add_to_basket()
     page.solve_quiz_and_get_code()
     page.should_contains_product_name_in_success_message(page.product_name(), page.success_message())
@@ -25,17 +24,13 @@ def test_guest_can_add_product_to_cart(browser, link):
 
 @pytest.mark.skip
 def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link)
-    page.open()
+    page = setup_product_page(browser)
     page.click_btn_add_to_basket()
     page.should_not_be_success_message()
 
 
 @pytest.mark.skip
 def test_message_dissapeared_after_adding_product_to_cart(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link)
-    page.open()
+    page = setup_product_page(browser)
     page.click_btn_add_to_basket()
     page.should_be_disappeared_success_message()
